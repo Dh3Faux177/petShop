@@ -1,0 +1,32 @@
+You are required to develop a Java EE application that integrates with a relational database system. This project aims to demonstrate your understanding of database integration in enterprise-level applications. Your project must showcase the integration of CRUD (Create, Retrieve, Update, Delete) operations. The system should follow good design principles by implementing classes and interfaces.
+
+Each system development MUST:
+1. Relational Tables: Use at least two relational tables in a database (PostgreSQL, MySQL, etc.).
+2. Forms/Pages: Contain at least five forms/pages using Java EE technologies (JSP, Servlets, or JSF).
+3. CRUD Operations: Enable creating, retrieving, updating, and deleting records from the database through the Java EE interface.
+4. Search Functionality: Include a search feature to retrieve specific records from the database.
+5. Login System: Implement secure login functionality with encrypted password storage (JEE security features like JAAS).
+6. Calculation Feature: Include a feature that performs calculations (e.g., total price, averages) using Java EE’s backend logic.
+7. Bug-Free and Efficient: The system must run efficiently with no major bugs and smooth functionality.
+8. Class Structure: Proper use of Java EE classes and interfaces to separate business logic from presentation and data access layers.
+
+Ok so here what I proposed for my application: 
+•	I want to make Point of Sale for Pet Shop
+•	There are 2 roles in this system which are Cashier and Manager
+•	Cashier who can only manage the calculation for purchase and can only view product
+•	Manager can manage the calculation for purchase, view product, add product, delete product, edit product, add new cashier, edit cashier details, delete cashier and view cashier
+•	There will be 3 tables only in database which are manager, cashier and product
+•	This will be all my pages:
+o	log in page (manager and cashier)
+o	Calculation page to make purchase (manager and cashier)
+o	Product list page (manager (can delete) and cashier)
+o	View product page (manager and cashier)
+o	Add new product page (manager)
+o	Cashier list (manger (can delete))
+o	View Cashier (manager)
+o	Edit Cashier (manager)
+•	Also include search functionality in Product list and Cashier list page
+
+I will be doing this project by using spring initializer and using these dependencies: spring web, spring boot devtools, thymeleaf, mysql driver, spring data jpa, validation. IDE I’ll be using is IntelliJ
+
+

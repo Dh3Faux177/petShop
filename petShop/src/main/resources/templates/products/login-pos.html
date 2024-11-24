@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Pet Shop</title>
+
+  <!-- Include Bootstrap CSS for styling -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .login-container {
+        margin-top: 50px;
+    }
+    .login-box {
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .login-box h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .form-control {
+        margin-bottom: 15px;
+    }
+    .role-selection {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .role-selection button {
+        margin: 0 10px;
+        width: 150px;
+    }
+    /* Add this style to highlight the active button */
+    .active-role {
+        background-color: #007bff !important;
+        color: white !important;
+        border-color: #007bff !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container login-container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="login-box">
+        <h2>Login</h2>
+
+        <!-- Role selection above the login form (side-by-side buttons) -->
+        <div class="role-selection">
+          <button type="button" class="btn btn-outline-primary" id="cashierBtn">Cashier</button>
+          <button type="button" class="btn btn-outline-primary" id="managerBtn">Manager</button>
+        </div>
+
+        <!-- Login form -->
+        <form action="/log" method="post" id="loginForm">
+          <!-- Hidden role input -->
+          <input type="hidden" name="role" id="role" value="CASHIER">
+
+          <!-- Username input -->
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // JavaScript to handle role selection
+  document.getElementById("cashierBtn").addEventListener("click", function() {
+    document.getElementById("role").value = "CASHIER"; // Set role to Cashier
+    setActiveRole(this, "managerBtn");
+  });
+
+  document.getElementById("managerBtn").addEventListener("click", function() {
+    document.getElementById("role").value = "MANAGER"; // Set role to Manager
+    setActiveRole(this, "cashierBtn");
+  });
+
+  // Function to toggle active class
+  function setActiveRole(selectedButton, otherButtonId) {
+    // Remove active class from the other button
+    document.getElementById(otherButtonId).classList.remove("active-role");
+
+    // Add active class to the selected button
+    selectedButton.classList.add("active-role");
+  }
+</script>
+
+</body>
+</html>

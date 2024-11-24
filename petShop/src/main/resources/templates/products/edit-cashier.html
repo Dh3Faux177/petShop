@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Add Bootstrap Icons CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <title>Edit Cashier</title>
+  <style>
+    .eye-icon {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Pet Shop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/products/calculate">POS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/">Product List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/create">Add Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/c-list">Cashier List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/c-create">Add Cashier</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/log">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1>Edit Cashier</h1>
+  <form th:action="@{/products/c-edit/{id}(id=${cashierId})}" th:object="${cashierDto}" method="post" enctype="multipart/form-data" class="mt-4">
+
+    <!-- Hidden ID Field for form submission -->
+    <input type="hidden" th:field="*{id}" th:value="${cashierId}" />
+
+    <!-- Name Field -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter cashier name">
+      <div th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}">Name Error</div>
+    </div>
+
+    <!-- Username Field -->
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Enter username">
+      <div th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="*{username}">Username Error</div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Enter email address">
+      <div th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}">Email Error</div>
+    </div>
+
+    <!-- Password Field with Current User's Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <!-- Password field with pre-populated value using th:value -->
+        <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Enter password" th:value="${cashierDto.password}" />
+        <button type="button" class="btn btn-outline-secondary eye-icon" onclick="togglePasswordVisibility()">
+          <i id="eye-icon" class="bi bi-eye-slash"></i>
+        </button>
+      </div>
+      <!-- Hidden Input for Password (for submission) -->
+      <input type="hidden" th:field="*{password}" th:value="${cashierDto.password}" />
+      <div th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}">Password Error</div>
+    </div>
+
+    <!-- Phone Number Field -->
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="text" th:field="*{phone}" class="form-control" id="phone" placeholder="Enter phone number">
+      <div th:if="${#fields.hasErrors('phone')}" class="text-danger" th:errors="*{phone}">Phone Error</div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+
+<!-- Bootstrap JS and Icons for Eye Icon -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+<script>
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById('password');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      eyeIcon.classList.remove('bi-eye-slash');
+      eyeIcon.classList.add('bi-eye');
+    } else {
+      passwordField.type = 'password';
+      eyeIcon.classList.remove('bi-eye');
+      eyeIcon.classList.add('bi-eye-slash');
+    }
+  }
+</script>
+</body>
+</html>
