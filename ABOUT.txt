@@ -29,4 +29,4 @@ o	Edit Cashier (manager)
 
 I will be doing this project by using spring initializer and using these dependencies: spring web, spring boot devtools, thymeleaf, mysql driver, spring data jpa, validation. IDE I’ll be using is IntelliJ
 
-
+USE: localhost:8080/log
